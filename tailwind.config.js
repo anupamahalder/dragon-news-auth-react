@@ -5,7 +5,12 @@ content: [
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      // custom tailwind class for font family 
+      fontFamily:{
+        poppins: "'Poppins', sans-serif"
+      }
+    },
   },
   plugins: [require("daisyui")],
 }
