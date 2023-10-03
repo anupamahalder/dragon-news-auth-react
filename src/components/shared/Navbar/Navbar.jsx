@@ -7,8 +7,8 @@ const Navbar = () => {
         <li><NavLink>Career</NavLink></li>
     </>
     return (
-        <div>
-            <div className="navbar bg-base-100">
+        <div className="my-8">
+            <div className="navbar">
                 <div className="navbar-start">
                     <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -20,18 +20,18 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className=" menu-horizontal gap-4 px-1">
+                    <ul className=" menu-horizontal gap-6 px-1 text-gray-600">
                         {navLinks}
                     </ul>
                 </div>
-                <div className="navbar-end">
+                <div className="navbar-end gap-3 mr-6">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                     <div className="w-10 rounded-full">
                     <img src={user} />
                     </div>
                 </label>
                     <Link to='#'>
-                        <button className="btn">Login</button>
+                        <button className="hover:bg-black rounded-md text-white py-2 px-6 bg-gray-800">Login</button>
                     </Link>
                 </div>
                 </div>
