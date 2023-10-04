@@ -1,14 +1,23 @@
+import { useContext } from "react";
 import Navbar from "../../components/shared/Navbar/Navbar";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
 const Login = () => {
+    const {signIn} = useContext(AuthContext);
+
     const handleLogin = e =>{
         e.preventDefault();
         console.log("e current-->", e.currentTarget);
         // e.currentTarget target the form section to access form data
         const form = new FormData(e.currentTarget);
         // using get method we can get the value of the field giving name of the field as parameter 
-        console.log(form.get('email'));
-        console.log(form.get('password'));
+        const email = form.get('email');
+        const password = form.get('password');
+        signIn(email, password)
+        .then(result => {
+            console.log(result)
+        })
+        .catch(error => console.log(error.message))
     }
     return (
         <div>

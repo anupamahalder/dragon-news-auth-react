@@ -10,7 +10,9 @@ const Routes = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Home></Home>
+                element: <Home></Home>,
+                // when we will go to home component news data will be loaded 
+                loader: () => fetch('news.json')
             },
             {
                 path: '/about',

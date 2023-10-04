@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import PropTypes from 'prop-types';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import app from "../Firebase/firebase.config";
 
 // create context and export for global access
@@ -16,6 +16,10 @@ const AuthProvider = ({children}) => {
     const createUser = (email, password) =>{
         //return a function which will call firebase and this function will take three parameters
         return createUserWithEmailAndPassword(auth, email, password);
+    }
+    //implement signin
+    const signIn = (email, password) =>{
+        return signInWithEmailAndPassword(auth, email, password);
     }
     // implement signout 
     const logOut = () =>{
@@ -39,6 +43,7 @@ const AuthProvider = ({children}) => {
     const authInfo = {
         user,
         createUser,
+        signIn,
         logOut,
     }
     return (
