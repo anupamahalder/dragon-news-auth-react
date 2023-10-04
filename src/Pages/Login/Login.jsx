@@ -1,13 +1,15 @@
 import { useContext } from "react";
 import Navbar from "../../components/shared/Navbar/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 const Login = () => {
     const {signIn} = useContext(AuthContext);
-
+    const location = useLocation();
+    console.log('location in login page',location);
+    const navigate = useNavigate();
     const handleLogin = e =>{
         e.preventDefault();
-        console.log("e current-->", e.currentTarget);
+        // console.log("e current-->", e.currentTarget);
         // e.currentTarget target the form section to access form data
         const form = new FormData(e.currentTarget);
         // using get method we can get the value of the field giving name of the field as parameter 
@@ -15,7 +17,11 @@ const Login = () => {
         const password = form.get('password');
         signIn(email, password)
         .then(result => {
-            console.log(result)
+            console.log(result);
+            // reset the form after successful login 
+            // e.target.reset();
+            // if location has a state value then go to location.state else go to home 
+            navigate(location?.state ? location.state : '/');
         })
         .catch(error => console.log(error.message))
     }

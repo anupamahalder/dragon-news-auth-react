@@ -11,18 +11,24 @@ const auth = getAuth(app);
 const AuthProvider = ({children}) => {
     // declare a state to get info about user login or not 
     const [user, setUser] = useState(null);
+    //at time of reload we can declare a state to track loading and by default 
+    const [loading, setLoading] = useState(true);
 
     //create a function which will take two parameters to create user with email and password and this function will be used by register page so we put it to authInfo
     const createUser = (email, password) =>{
+        // set loading true 
+        setLoading(true);
         //return a function which will call firebase and this function will take three parameters
         return createUserWithEmailAndPassword(auth, email, password);
     }
     //implement signin
     const signIn = (email, password) =>{
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
     // implement signout 
     const logOut = () =>{
+        setLoading(true);
         return signOut(auth);
     }
     useEffect(()=>{
@@ -30,6 +36,7 @@ const AuthProvider = ({children}) => {
         // to clean up we will store it to a variable 
         const unSubscribe = onAuthStateChanged(auth,currentUser => {
             console.log('User in the auth state changed',currentUser);
+            setLoading(false);
             // set user to current user , now user will have the current user and user is shared for global so any component can access the user
             setUser(currentUser);
         })
@@ -43,6 +50,7 @@ const AuthProvider = ({children}) => {
     const authInfo = {
         user,
         createUser,
+        loading,
         signIn,
         logOut,
     }
