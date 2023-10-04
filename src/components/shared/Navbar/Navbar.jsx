@@ -2,12 +2,12 @@ import { NavLink, Link } from "react-router-dom";
 import user from '../../../assets/user.png'
 const Navbar = () => {
     const navLinks = <>
-        <li><NavLink>Home</NavLink></li>
-        <li><NavLink>About</NavLink></li>
-        <li><NavLink>Career</NavLink></li>
+        <li><NavLink to='/'>Home</NavLink></li>
+        <li><NavLink to='/about'>About</NavLink></li>
+        <li><NavLink to='/career'>Career</NavLink></li>
     </>
     return (
-        <div className="my-8">
+        <div className="my-4">
             <div className="navbar">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -30,7 +30,7 @@ const Navbar = () => {
                     <img src={user} />
                     </div>
                 </label>
-                    <Link to='#'>
+                    <Link to='/login'>
                         <button className="hover:bg-black rounded-md text-white py-2 px-6 bg-gray-800">Login</button>
                     </Link>
                 </div>
